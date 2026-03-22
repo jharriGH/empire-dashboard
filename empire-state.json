@@ -1,0 +1,297 @@
+{
+  "meta": {
+    "lastUpdated": "2026-03-20",
+    "lastUpdatedBy": "Claude session",
+    "empireStartDate": "2025-09-01",
+    "version": "3.0"
+  },
+  "infra": {
+    "pills": [
+      { "label": "Twilio A2P Approved · (866) 621-7044", "color": "green" },
+      { "label": "KJLE API Live · kjle-api.onrender.com", "color": "green" },
+      { "label": "Screenshot Server Live · demoboosterz-screenshot-server", "color": "green" },
+      { "label": "VoiceDropz Live · kjvoicedropz-api.railway.app", "color": "green" },
+      { "label": "KJWidgetz API Live · kjwidgetz-api.onrender.com", "color": "green" },
+      { "label": "Stripe Test Mode · swap keys at launch", "color": "amber" },
+      { "label": "Shared Supabase · dhzpwobfihrprlcxqjbq + oiiduolwnhinosmbkquz", "color": "blue" }
+    ],
+    "envVars": [
+      { "key": "SUPABASE_URL", "status": "set", "note": "oiiduolwnhinosmbkquz.supabase.co" },
+      { "key": "SUPABASE_SERVICE_KEY", "status": "set", "note": "service role key set" },
+      { "key": "ADMIN_SECRET", "status": "set", "note": "kjwidgetz-admin-2026-king-james-kj" },
+      { "key": "ANTHROPIC_API_KEY", "status": "set", "note": "Chatbot + AI routes (P6, P15, P17, P18)" },
+      { "key": "GOOGLE_PLACES_API_KEY", "status": "set", "note": "ReviewPopz + UnhideLocal audit" },
+      { "key": "APP_URL", "status": "set", "note": "https://kjwidgetz-api.onrender.com" },
+      { "key": "STRIPE_SECRET_KEY", "status": "warn", "note": "sk_test_ → SWAP to sk_live_ before launch" },
+      { "key": "STRIPE_WEBHOOK_SECRET", "status": "warn", "note": "Test only → new webhook needed for live mode" },
+      { "key": "STRIPE_PRICE_STARTER/GROWTH/PRO/AGENCY", "status": "warn", "note": "All 4 test price IDs → swap to live" },
+      { "key": "NODE_ENV", "status": "warn", "note": "\"development\" → change to \"production\" at launch" },
+      { "key": "VOICEDROPZ_BRIDGE_KEY", "status": "missing", "note": "Add: kjvoicedropz-bridge-2026-king-james" },
+      { "key": "TWILIO_ACCOUNT_SID", "status": "missing", "note": "Add after A2P — SMS opt-in widget (P10)" },
+      { "key": "TWILIO_AUTH_TOKEN", "status": "missing", "note": "Add alongside ACCOUNT_SID" },
+      { "key": "RESEND_API_KEY", "status": "missing", "note": "Magic link (P20) + dunning emails (P21)" }
+    ],
+    "dataFlows": [
+      { "from": "KJLE", "to": "DemoEnginez", "what": "Leads + Pain Score + niche" },
+      { "from": "KJLE", "to": "DemoBoosterz", "what": "Leads + Pain Score + niche" },
+      { "from": "KJLE", "to": "KJWidgetz", "what": "Leads via export API" },
+      { "from": "KJLE", "to": "VoiceDropz", "what": "Leads + hot lead flags" },
+      { "from": "KJLE", "to": "UnhideLocal", "what": "seo_schema_present flag" },
+      { "from": "DemoBoosterz", "to": "KJWidgetz", "what": "bridgeFromDemoBoosterz()" },
+      { "from": "UnhideLocal", "to": "KJWidgetz", "what": "bridgeFromUnhideLocal()" },
+      { "from": "VoiceDropz", "to": "KJWidgetz", "what": "AI callback trigger" },
+      { "from": "KJWidgetz", "to": "GoHighLevel", "what": "Converted client webhooks" },
+      { "from": "DemoEnginez", "to": "GoHighLevel", "what": "Demo view events" }
+    ]
+  },
+  "projects": [
+    {
+      "id": "kjle",
+      "name": "KJLE",
+      "icon": "👑",
+      "role": "Data Backbone & Lead Intelligence",
+      "status": "live",
+      "statusLabel": "Fully Live",
+      "color": "#FFD700",
+      "pct": 97,
+      "domain": "deck.kjle.com",
+      "priority": 1,
+      "startDate": "2025-10-15",
+      "startDateLabel": "Oct 15, 2025",
+      "nextActions": [
+        "Upload fresh CSVs — 28,849 leads at Stage 0 (POST /kjle/v1/csv/upload → import)",
+        "Re-enable AlertSystem in KJLECommandDeck.jsx — ~15 min, uncomment + wire onHeightChange"
+      ],
+      "bugs": [],
+      "prelaunch": [],
+      "phases": [
+        { "n": "Supabase Schema — 11 tables, 20+ indexes, 4 views", "s": "complete" },
+        { "n": "Python Ingestion Pipeline + Pain Score Engine", "s": "complete" },
+        { "n": "Niche Taxonomy + category_mappings (100+ niches)", "s": "complete" },
+        { "n": "Segmentation Engine — filters, tags, lists", "s": "complete" },
+        { "n": "Full Enrichment Waterfall — PageSpeed, Yelp, Outscraper, Firecrawl", "s": "complete" },
+        { "n": "CSV Batch Ingestion UI + dedup engine", "s": "complete" },
+        { "n": "Export — ReachInbox, GoHighLevel, DemoEnginez, VoiceDrop", "s": "complete" },
+        { "n": "Cost Intelligence — unified api_cost_log + source_system", "s": "complete" },
+        { "n": "Empire Health Monitor — service_health_log all 6 products", "s": "complete" },
+        { "n": "Truelist.io Email Cleaning — email_valid + email_status", "s": "complete" },
+        { "n": "Command Deck Frontend — full Military HUD (Prompts 1–25)", "s": "complete" },
+        { "n": "Admin Backend — Prompts 26–32 all live on Render", "s": "complete" },
+        { "n": "AlertSystem re-enable in KJLECommandDeck.jsx ← punch list", "s": "punch" }
+      ]
+    },
+    {
+      "id": "kjwidgetz",
+      "name": "KJWidgetz",
+      "icon": "⚙️",
+      "role": "Client Fulfillment & Retention Layer",
+      "status": "prelaunch",
+      "statusLabel": "Pre-Launch",
+      "color": "#F59E0B",
+      "pct": 92,
+      "domain": "KJWidgetz.com",
+      "priority": 2,
+      "startDate": "2026-01-15",
+      "startDateLabel": "Jan 15, 2026",
+      "nextActions": [
+        "Switch Stripe to live keys + create live webhook before first client",
+        "Wire Resend for magic link (P20) + dunning emails (P21)"
+      ],
+      "bugs": [],
+      "prelaunch": [
+        { "n": "Switch Stripe to live keys — sk_live_ + new webhook endpoint + update STRIPE_WEBHOOK_SECRET", "done": false },
+        { "n": "Wire Resend for magic link emails (P20) + dunning sequence emails (P21)", "done": false },
+        { "n": "Wire Twilio SMS opt-in (P10) — A2P approved, add TWILIO_ACCOUNT_SID + TWILIO_AUTH_TOKEN to Render", "done": false },
+        { "n": "Set NODE_ENV=production on Render — currently 'development' which exposes dev_token", "done": false },
+        { "n": "Add VOICEDROPZ_BRIDGE_KEY env var to Render — value: kjvoicedropz-bridge-2026-king-james", "done": false },
+        { "n": "Schedule dunning cron: POST /dunning/run daily via Render scheduled job", "done": false },
+        { "n": "Schedule reputation scan cron: POST /reputation/scan daily via Render scheduled job", "done": false },
+        { "n": "Point KJWidgetz.com domain to Lovable client portal", "done": false },
+        { "n": "Expand niche onboarding from 6 niches to 12+ in /niches/presets", "done": false },
+        { "n": "Review pricing strategy: $49/$99/$149/$297 — confirm before first outreach", "done": false },
+        { "n": "Create live Stripe webhook + update STRIPE_WEBHOOK_SECRET in Render", "done": false }
+      ],
+      "phases": [
+        { "n": "P1 — Database Schema: 12 tables + 5 auto-triggers verified", "s": "complete" },
+        { "n": "P2 — Core API Server: Node/Express, 5/5 tests green", "s": "complete" },
+        { "n": "P3 — Universal Embed Script: one tag, token-based", "s": "complete" },
+        { "n": "P4 — Stripe Billing: checkout + webhooks + 4 price IDs", "s": "complete" },
+        { "n": "P5 — Admin Dashboard UI: Lovable 'KJWidgetz', dark military HUD", "s": "complete" },
+        { "n": "P6 — Chatbot Widget: claude-haiku-4-5, $0.001/conv, 150K cap", "s": "complete" },
+        { "n": "P7 — AI Callback Agent: alert_only + auto_call via VoiceDropz", "s": "complete" },
+        { "n": "P8 — ReviewPopz: Google Places API, 24hr cache", "s": "complete" },
+        { "n": "P9 — AI Scheduling: Calendly stub, native scheduler post-launch", "s": "complete" },
+        { "n": "P10 — SMS Opt-In Pop: Twilio stub, (866) 621-7044", "s": "complete" },
+        { "n": "P11–P14 — Visitor Counter, Lead Capture, Quote Estimator, Trust Badge", "s": "complete" },
+        { "n": "P15 — UnhideLocal Service: claude-sonnet, 90/100 Grade A schema", "s": "complete" },
+        { "n": "P16 — Reputation Monitor: Google Places, 24hr scan", "s": "complete" },
+        { "n": "P17 — AI Visibility Report: haiku, $0.0006/report, HTML email", "s": "complete" },
+        { "n": "P18 — AI Audit: sonnet, 5 categories, 78/100 grade", "s": "complete" },
+        { "n": "P19 — Client Portal UI: Lovable 'KJWidgetz Insights', light/clean", "s": "complete" },
+        { "n": "P20 — White-Label System: Agency only, magic link + custom branding", "s": "complete" },
+        { "n": "P21 — Auto-Billing & Dunning: Day 1→3→7 suspend flow", "s": "complete" },
+        { "n": "P22 — Niche Onboarding: 6 niches, 8 widgets each", "s": "complete" },
+        { "n": "P23+P24 — DemoBoosterz + UnhideLocal Bridge routes live", "s": "complete" },
+        { "n": "P25 — Launch Hardening: rate limits, Helmet, monitoring routes", "s": "complete" },
+        { "n": "Pre-launch checklist: 11 items remaining before go-live", "s": "active" },
+        { "n": "P26 — Pixel System: first-party tracking → FB/Google Custom Audiences", "s": "pending" }
+      ]
+    },
+    {
+      "id": "demoboosterz",
+      "name": "DemoBoosterz",
+      "icon": "🚀",
+      "role": "Cold Outreach — Existing Site Enhancer",
+      "status": "live",
+      "statusLabel": "Launch Ready",
+      "color": "#00C46A",
+      "pct": 90,
+      "domain": "DemoBoosterz.com",
+      "priority": 3,
+      "startDate": "2025-11-01",
+      "startDateLabel": "Nov 1, 2025",
+      "nextActions": [
+        "Launch first outreach campaign NOW — product is fully ready",
+        "Build guided interactive tour as final polish before declaring GOAT"
+      ],
+      "bugs": [],
+      "prelaunch": [
+        { "n": "Guided Interactive Tour — spotlight effects, sequential widget reveals, bouncing cursor, toast cards", "done": false },
+        { "n": "Sales Page Phase 1B — wire Veedea LTD ($166) interactive video to DemoBoosterz.com", "done": false },
+        { "n": "Personalized Video Intro Widget — evaluate Yepic/Vumu first (NOT HeyGen, NOT Veedea)", "done": false },
+        { "n": "Declare GOAT + push first outreach campaign via Instantly/ReachInbox", "done": false }
+      ],
+      "phases": [
+        { "n": "Phase 1 — Auth + 8-Table Supabase Schema", "s": "complete" },
+        { "n": "Phase 2 — Leads / CSV Import with auto field mapping", "s": "complete" },
+        { "n": "Phase 3 — Demo Builder: 11 Overlay Modules", "s": "complete" },
+        { "n": "Phase 4 — Public Demo Overlay (cinematic intro + Logo.dev)", "s": "complete" },
+        { "n": "Phase 5 — Hot Lead Detection + Automation Pipeline", "s": "complete" },
+        { "n": "Phase 6 — Cost Intelligence + 27 Niche Presets + combobox", "s": "complete" },
+        { "n": "Guided Interactive Tour (spotlight, bouncing cursor, toasts)", "s": "pending" },
+        { "n": "Sales Page Phase 1B — Veedea LTD interactive video walkthrough", "s": "pending" },
+        { "n": "Personalized Video Intro Widget — evaluate Yepic/Vumu first", "s": "pending" },
+        { "n": "Infrastructure Consolidation with DemoEnginez (~$84/mo saved)", "s": "pending" }
+      ]
+    },
+    {
+      "id": "demoenginez",
+      "name": "DemoEnginez",
+      "icon": "🏗️",
+      "role": "Cold Outreach — New Demo Site Generator",
+      "status": "testing",
+      "statusLabel": "Bug Fixing",
+      "color": "#FF6B35",
+      "pct": 55,
+      "domain": "DemoEnginez.com",
+      "priority": 4,
+      "startDate": "2025-09-01",
+      "startDateLabel": "Sep 1, 2025",
+      "nextActions": [
+        "Fire master batch fix prompt into Lovable — all 9 bugs in one session",
+        "Collect remaining 40-niche pass/fail from /admin/niche-test"
+      ],
+      "bugs": [
+        "Plumbing hero: shows kitchen interiors",
+        "Chiropractic: only 1 gallery image + team section missing",
+        "Lawyer: review label wrong + team section missing",
+        "Real Estate: team section missing",
+        "Salon: niche detection fails → maps to \"Other\"",
+        "Movers: generic interior hero",
+        "Pest Control: generic interior hero",
+        "AC Repair: generic interior hero",
+        "Gallery first image: Google placeholder on test data"
+      ],
+      "prelaunch": [],
+      "phases": [
+        { "n": "Core 62-Niche Config System (services, hero, CTA, colors, aliases)", "s": "complete" },
+        { "n": "Alias Matching — 150+ exhaustive entries, all 62 niches", "s": "complete" },
+        { "n": "Shared Screenshot Server (Render, pre-installed Chrome)", "s": "complete" },
+        { "n": "Admin Cost Intelligence Dashboard at /admin/costs", "s": "complete" },
+        { "n": "/admin/niche-test Bulk Tester — all 62 niches in one grid", "s": "complete" },
+        { "n": "Groups 1–6 Stress Tested — 18 of 62 niches complete", "s": "complete" },
+        { "n": "Remaining 40 Niches — collect pass/fail from /admin/niche-test", "s": "active" },
+        { "n": "Hero Image Batch Fix — fire master Lovable prompt", "s": "pending" },
+        { "n": "Salon Niche Detection Fix — currently maps to \"Other\"", "s": "pending" },
+        { "n": "Team Section Fixes — Lawyer, Chiro, Real Estate", "s": "pending" },
+        { "n": "Infrastructure Consolidation with DemoBoosterz", "s": "pending" }
+      ]
+    },
+    {
+      "id": "unhidelocal",
+      "name": "UnhideLocal",
+      "icon": "🌐",
+      "role": "AI Search Visibility SaaS — Top of Funnel",
+      "status": "building",
+      "statusLabel": "Pre-Deploy",
+      "color": "#B44FFF",
+      "pct": 70,
+      "domain": "UnhideLocal.com",
+      "priority": 5,
+      "startDate": "2026-02-01",
+      "startDateLabel": "Feb 1, 2026",
+      "nextActions": [
+        "Wire Stripe price IDs into checkout.html + deploy to UnhideLocal.com",
+        "Frontend deploy only needed — engine already wired via KJWidgetz P15"
+      ],
+      "bugs": [],
+      "prelaunch": [
+        { "n": "Wire Stripe price IDs into checkout.html (Pro $47/mo + Agency $97/mo)", "done": false },
+        { "n": "Deploy unhidelocal.html to UnhideLocal.com production", "done": false },
+        { "n": "Wire Google Places API to free audit tool address lookup", "done": false },
+        { "n": "Connect KJLE seo_schema_present=false segment → UnhideLocal pipeline", "done": false }
+      ],
+      "phases": [
+        { "n": "Landing Page + Free AI Visibility Audit Tool (score ring, ticker)", "s": "complete" },
+        { "n": "Schema Generator — 30+ biz types, FAQ builder, Claude API", "s": "complete" },
+        { "n": "Stripe + Supabase Backend — Pro $47/mo + Agency $97/mo", "s": "complete" },
+        { "n": "Dual Dashboard — Agency master + Client portal", "s": "complete" },
+        { "n": "Marketing Spots — 6 animated upsell cards + admin toggle", "s": "complete" },
+        { "n": "Checkout.html — monthly/annual, add-ons, live summary", "s": "complete" },
+        { "n": "KJWidgetz P15 integration — background service built + live", "s": "complete" },
+        { "n": "Wire Stripe Price IDs into checkout.html", "s": "pending" },
+        { "n": "Deploy to UnhideLocal.com production", "s": "pending" },
+        { "n": "Google Places API wired to free audit address lookup", "s": "pending" }
+      ]
+    },
+    {
+      "id": "voicedropz",
+      "name": "KJVoiceDropz",
+      "icon": "🎙️",
+      "role": "Ringless Voicemail + AI Calling Platform",
+      "status": "live",
+      "statusLabel": "Deployed",
+      "color": "#00C46A",
+      "pct": 75,
+      "domain": "KJVoiceDropz.com",
+      "priority": 6,
+      "startDate": "2026-02-10",
+      "startDateLabel": "Feb 10, 2026",
+      "nextActions": [
+        "Add VOICEDROPZ_BRIDGE_KEY env var to KJWidgetz Render service",
+        "Set up Drop Cowboy BYOC with Twilio (866) 621-7044"
+      ],
+      "bugs": [],
+      "prelaunch": [
+        { "n": "Add VOICEDROPZ_BRIDGE_KEY to KJWidgetz Render environment variables", "done": false },
+        { "n": "Set up Drop Cowboy BYOC with Twilio (866) 621-7044", "done": false },
+        { "n": "Build Hot Lead Auto-Router feature layer", "done": false },
+        { "n": "Build Spintax Generation + A/B Testing Layer", "done": false },
+        { "n": "Build Carrier Health Monitoring + DNC Compliance", "done": false }
+      ],
+      "phases": [
+        { "n": "Architecture Design + 12-Table Supabase Schema", "s": "complete" },
+        { "n": "FastAPI Backend — full codebase, all service modules", "s": "complete" },
+        { "n": "GitHub repo: jharriGH/kjvoicedropz-api", "s": "complete" },
+        { "n": "Railway Deployment — API live, 5/5 health checks green", "s": "complete" },
+        { "n": "Kokoro TTS Sidecar — live at kokoro-tts-production-ad64", "s": "complete" },
+        { "n": "KJWidgetz callback.js wired to live endpoint", "s": "complete" },
+        { "n": "Add VOICEDROPZ_BRIDGE_KEY to KJWidgetz Render env vars", "s": "active" },
+        { "n": "Drop Cowboy BYOC setup for Twilio (866) 621-7044", "s": "pending" },
+        { "n": "Hot Lead Auto-Router — full feature layer", "s": "pending" },
+        { "n": "Spintax Generation + A/B Testing Layer", "s": "pending" },
+        { "n": "Carrier Health Monitoring + DNC Compliance", "s": "pending" }
+      ]
+    }
+  ]
+}
