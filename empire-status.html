@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KJ Empire Dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root { --bg:#0b0e14; --fg:#e6e8eb; --muted:#8a93a3; --card:#141923; --line:#222a38;
+           --green:#23c486; --yellow:#f5b942; --red:#e95151; --accent:#a855f7; }
+  * { box-sizing:border-box; }
+  body { background:var(--bg); color:var(--fg); font:14px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+         margin:0; padding:24px; }
+  h1 { margin:0 0 4px; font-size:26px; }
+  .meta { color:var(--muted); margin-bottom:18px; }
+  .kpis { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:24px; }
+  .kpi { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 18px; min-width:120px; }
+  .kpi .v { font-size:24px; font-weight:600; }
+  .kpi .l { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--line); border-radius:10px;
+           padding:14px; }
+  .card.fresh { border-left-color:var(--green); }
+  .card.warming { border-left-color:var(--yellow); }
+  .card.stale { border-left-color:var(--red); }
+  .head { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .name { font-weight:600; font-size:15px; }
+  .desc { color:#c7ccd6; margin:4px 0 8px; min-height:1.4em; }
+  .repo a { color:var(--accent); text-decoration:none; font-size:12px; word-break:break-all; }
+  .sub { color:var(--muted); font-size:12px; margin-top:4px; }
+  .note { color:var(--yellow); font-size:12px; margin-top:6px; }
+  .chips { margin-top:8px; display:flex; flex-wrap:wrap; gap:4px; }
+  .chip { background:#1c2333; color:#c7ccd6; padding:2px 8px; border-radius:999px; font-size:11px; }
+  section { margin-top:28px; }
+  section h2 { font-size:18px; margin:0 0 8px; }
+  section ul { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 14px 14px 32px;
+                margin:0; color:#c7ccd6; }
+  footer { margin-top:32px; color:var(--muted); font-size:12px; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<h1>👑 KJ Empire Dashboard</h1>
+<div class="meta">Last refreshed: 2026-06-06 20:49 UTC · auto-rebuilds hourly + on push</div>
+<div class="kpis">
+  <div class="kpi"><div class="v">🟢 0</div><div class="l">Fresh (≤14d)</div></div>
+  <div class="kpi"><div class="v">🟡 0</div><div class="l">Warming (15–90d)</div></div>
+  <div class="kpi"><div class="v">🔴 24</div><div class="l">Stale / no roadmap</div></div>
+  <div class="kpi"><div class="v">$0.00</div><div class="l">Empire spend</div></div>
+  <div class="kpi"><div class="v">$0.00</div><div class="l">Remaining budget</div></div>
+  <div class="kpi"><div class="v">24</div><div class="l">Projects tracked</div></div>
+</div>
+<div class="grid">
+<div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">AgentEnginez</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/agentenginez-outreach" target="_blank">jharriGH/agentenginez-outreach</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">AnswerEnginez</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/answerenginez" target="_blank">jharriGH/answerenginez</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">CFYC</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/cfyc" target="_blank">jharriGH/cfyc</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">DayCareMarketerz</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/daycaremarketerz" target="_blank">jharriGH/daycaremarketerz</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">DemoBoosterz</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/demoboosterz" target="_blank">jharriGH/demoboosterz</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">EmpireSenderz</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjle-sender" target="_blank">jharriGH/kjle-sender</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">HFDC</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/hfdc" target="_blank">jharriGH/hfdc</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">IASH</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/iash" target="_blank">jharriGH/iash</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">KJ Brain</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kje-mcp" target="_blank">jharriGH/kje-mcp</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">KJ BridgeDeck</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kj-bridgedeck" target="_blank">jharriGH/kj-bridgedeck</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">KJ Marketing Autopilot</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kj-marketing-autopilot" target="_blank">jharriGH/kj-marketing-autopilot</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">KJAutonomous</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjautonomous" target="_blank">jharriGH/kjautonomous</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">KJLE</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjle" target="_blank">jharriGH/kjle</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">KJPLE</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjple" target="_blank">jharriGH/kjple</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">KJWidgetz</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjwidgetz-api" target="_blank">jharriGH/kjwidgetz-api</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">OfferEnginez</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/offerenginez-web" target="_blank">jharriGH/offerenginez-web</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">PromoEnginez</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/promoenginez" target="_blank">jharriGH/promoenginez</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">ReputationEmpirez</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/reputationempirez" target="_blank">jharriGH/reputationempirez</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">ReviewBombz</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/reviewbombz" target="_blank">jharriGH/reviewbombz</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">StarPhotoz</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/starphotoz" target="_blank">jharriGH/starphotoz</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">TH</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/telehealth-command-center" target="_blank">jharriGH/telehealth-command-center</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">UnHideLocal</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/unhidelocal" target="_blank">jharriGH/unhidelocal</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">VoiceDropz</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/voicedropz" target="_blank">jharriGH/voicedropz</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><span class="name">WestCoastStylez</span></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/westcoaststylez" target="_blank">jharriGH/westcoaststylez</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div>
+</div>
+<section>
+<h2>🔗 Integration graph</h2>
+<p>No integration relationships declared.</p>
+</section>
+<section>
+<h2>☂️ Umbrella members (ReputationEmpirez)</h2>
+<ul><li><b>ReviewPopz</b> — ReputationEmpirez umbrella member</li><li><b>NFCTapCardz</b> — ReputationEmpirez umbrella member</li><li><b>Reputation Risk Score</b> — ReputationEmpirez umbrella member</li></ul>
+</section>
+<footer>
+Generated by <code>build.py</code> on racknerd-7011b3a · empire-dashboard v1 ·
+add a project by editing <code>PROJECT_REGISTRY</code> in build.py, or push a webhook to trigger immediate rebuild.
+</footer>
+</body>
+</html>
