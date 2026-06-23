@@ -180,6 +180,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
   <button class="tab active" onclick="switchTab('projects',this)">📊 Projects</button>
   <button class="tab" onclick="switchTab('infra',this)">🏗️ Infrastructure</button>
   <button class="tab" onclick="switchTab('prelaunch',this)">🚀 Pre-Launch</button>
+  <button class="tab" onclick="switchTab('revenue',this)">💰 Revenue Forecast</button>
 </nav>
 
 <main class="main">
@@ -262,6 +263,19 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
 <!-- PRE-LAUNCH TAB -->
 <div class="tab-panel" id="tab-prelaunch">
   <div style="margin-top:.5rem" id="prelaunch-content"></div>
+</div>
+
+<!-- REVENUE FORECAST TAB -->
+<div class="tab-panel" id="tab-revenue">
+  <div style="margin-top:.5rem">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+      <h2 style="margin:0;color:var(--text);font-family:'Rajdhani',sans-serif;letter-spacing:1px">💰 REVENUE FORECAST</h2>
+      <div id="rev-meta" style="font-size:11px;color:var(--text2);font-family:'JetBrains Mono',monospace">loading…</div>
+    </div>
+    <div id="rev-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px"></div>
+    <div id="rev-assumptions" style="margin-top:18px;font-size:11px;color:var(--text2);font-family:'JetBrains Mono',monospace;background:rgba(0,0,0,0.25);border:1px solid var(--border);border-radius:10px;padding:12px"></div>
+    <div id="rev-error" style="display:none;margin-top:14px;padding:12px;border:1px solid #ef4444;background:rgba(239,68,68,0.08);color:#fecaca;border-radius:10px;font-size:12px"></div>
+  </div>
 </div>
 
 </main>
@@ -427,6 +441,55 @@ fetch('empire-state.json?_='+Date.now())
       +'</div>';
     document.getElementById('sync-label').textContent='Load failed';
   });
+
+// ── REVENUE FORECAST WIDGET ──
+function fmtUSD(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function revTrend(cur,p50){if(p50>cur*1.01)return{bg:'rgba(34,197,94,0.08)',border:'#22c55e',chip:'#22c55e',label:'UP'};if(p50<cur*0.99)return{bg:'rgba(239,68,68,0.08)',border:'#ef4444',chip:'#ef4444',label:'DOWN'};return{bg:'rgba(120,130,150,0.06)',border:'#6b7280',chip:'#9ca3af',label:'FLAT'};}
+function revCard(label,band,cur){
+  var c=revTrend(cur,band.p50);
+  var delta=band.p50-cur;
+  var deltaStr=(delta>=0?'+':'-')+fmtUSD(Math.abs(delta));
+  var lo=Math.min(band.p10,cur),hi=Math.max(band.p90,cur*1.5,1);
+  var span=Math.max(hi-lo,1);
+  var pct=function(v){return((v-lo)/span)*100;};
+  var bar='<div style="position:relative;height:10px;margin:8px 0;background:#0a1320;border-radius:6px;overflow:hidden">'
+    +'<div style="position:absolute;left:'+pct(band.p10)+'%;width:'+(pct(band.p90)-pct(band.p10))+'%;top:0;bottom:0;background:linear-gradient(90deg,#ef4444,#facc15,#22c55e)"></div>'
+    +'<div style="position:absolute;left:'+pct(band.p50)+'%;top:-3px;width:2px;height:16px;background:#fff"></div>'
+    +'<div style="position:absolute;left:'+pct(cur)+'%;top:-3px;width:2px;height:16px;background:#00E5FF"></div>'
+    +'</div>';
+  return'<div style="background:'+c.bg+';border:1px solid '+c.border+';border-radius:12px;padding:16px">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center">'
+    +'<span style="font-size:11px;letter-spacing:2px;color:var(--text2);font-family:Outfit">'+label+'</span>'
+    +'<span style="background:'+c.chip+';color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;font-family:JetBrains Mono">'+c.label+'</span></div>'
+    +'<div style="font-size:26px;font-weight:700;color:var(--text);margin-top:6px;font-family:Rajdhani">'+fmtUSD(band.p50)+'</div>'
+    +'<div style="font-size:11px;color:var(--text2);font-family:JetBrains Mono">'+fmtUSD(band.p10)+' – '+fmtUSD(band.p90)+'</div>'
+    +bar
+    +'<div style="font-size:10px;color:var(--text3);font-family:JetBrains Mono">vs current '+fmtUSD(cur)+' · '+deltaStr+'</div>'
+    +'</div>';
+}
+function loadRevenueForecast(){
+  var endpoint=(window.REVENUE_API_BASE||'')+'/api/revenue/predict';
+  fetch(endpoint).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(d){
+    document.getElementById('rev-meta').textContent='Current MRR '+fmtUSD(d.current_mrr)+' · '+(d.assumptions.hot_leads||0)+' hot leads · '+(d.assumptions.active_clients||0)+' clients';
+    document.getElementById('rev-cards').innerHTML=revCard('30 DAYS',d['30d'],d.current_mrr)+revCard('60 DAYS',d['60d'],d.current_mrr)+revCard('90 DAYS',d['90d'],d.current_mrr);
+    var a=d.assumptions;
+    document.getElementById('rev-assumptions').innerHTML=
+      '<strong style="color:var(--text)">Model assumptions</strong><br>'
+      +'close_rate base: '+a.close_rate_base+' · pessimistic: '+a.close_rate_pessimistic+' · optimistic: '+a.close_rate_optimistic+'<br>'
+      +'avg deal size (30d): '+fmtUSD(a.avg_deal_size_30d)+'<br>'
+      +'<em style="color:var(--text3)">'+a.model+'</em><br>'
+      +'Generated: '+a.generated_at;
+  }).catch(function(e){
+    var el=document.getElementById('rev-error');
+    el.style.display='block';
+    el.innerHTML='Revenue prediction unavailable: '+e.message+'<br><span style="color:var(--text3)">Set <code>window.REVENUE_API_BASE</code> or run <code>uvicorn api:app --port 3000</code> in <code>revenue_prediction/</code>.</span>';
+    document.getElementById('rev-meta').textContent='offline';
+  });
+}
+// load lazily when the tab is first opened
+var _revLoaded=false;
+var _origSwitchTab=switchTab;
+switchTab=function(id,btn){_origSwitchTab(id,btn);if(id==='revenue'&&!_revLoaded){_revLoaded=true;loadRevenueForecast();}};
 </script>
 </body>
 </html>

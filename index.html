@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KJ Empire Dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root { --bg:#0b0e14; --fg:#e6e8eb; --muted:#8a93a3; --card:#141923; --line:#222a38;
+           --green:#23c486; --yellow:#f5b942; --red:#e95151; --accent:#a855f7; }
+  * { box-sizing:border-box; }
+  body { background:var(--bg); color:var(--fg); font:14px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+         margin:0; padding:24px; }
+  h1 { margin:0 0 4px; font-size:26px; }
+  .meta { color:var(--muted); margin-bottom:18px; }
+  .kpis { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:24px; }
+  .kpi { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 18px; min-width:120px; }
+  .kpi .v { font-size:24px; font-weight:600; }
+  .kpi .l { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--line); border-radius:10px;
+           padding:14px; }
+  .card.fresh { border-left-color:var(--green); }
+  .card.warming { border-left-color:var(--yellow); }
+  .card.stale { border-left-color:var(--red); }
+  .head { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .name { font-weight:600; font-size:15px; }
+  .desc { color:#c7ccd6; margin:4px 0 8px; min-height:1.4em; }
+  .repo a { color:var(--accent); text-decoration:none; font-size:12px; word-break:break-all; }
+  .sub { color:var(--muted); font-size:12px; margin-top:4px; }
+  .note { color:var(--yellow); font-size:12px; margin-top:6px; }
+  .chips { margin-top:8px; display:flex; flex-wrap:wrap; gap:4px; }
+  .chip { background:#1c2333; color:#c7ccd6; padding:2px 8px; border-radius:999px; font-size:11px; }
+  section { margin-top:28px; }
+  section h2 { font-size:18px; margin:0 0 8px; }
+  section ul { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 14px 14px 32px;
+                margin:0; color:#c7ccd6; }
+  footer { margin-top:32px; color:var(--muted); font-size:12px; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<h1>👑 KJ Empire Dashboard</h1>
+<div class="meta">Last refreshed: 2026-06-23 02:00 UTC · auto-rebuilds hourly + on push</div>
+<div class="kpis">
+  <div class="kpi"><div class="v">🟢 52</div><div class="l">Fresh (≤14d)</div></div>
+  <div class="kpi"><div class="v">🟡 0</div><div class="l">Warming (15–90d)</div></div>
+  <div class="kpi"><div class="v">🔴 2</div><div class="l">Stale / no roadmap</div></div>
+  <div class="kpi"><div class="v">$10.92</div><div class="l">Empire spend</div></div>
+  <div class="kpi"><div class="v">$4.08</div><div class="l">Remaining budget</div></div>
+  <div class="kpi"><div class="v">54</div><div class="l">Projects tracked</div></div>
+</div>
+<div class="grid">
+<div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/agentenginez-outreach/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">AgentEnginez</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/agentenginez-outreach" target="_blank">jharriGH/agentenginez-outreach</a></div>
+  <div class='sub'>📅 2026-06-10 (13d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/agentenginez-api/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">agentenginez-api</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/agentenginez-api" target="_blank">jharriGH/agentenginez-api</a></div>
+  <div class='sub'>📅 2026-06-11 (12d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/agentenginez-content/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">agentenginez-content</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/agentenginez-content" target="_blank">jharriGH/agentenginez-content</a></div>
+  <div class='sub'>📅 2026-06-11 (12d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/agentenginez-dashboard/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">agentenginez-dashboard</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/agentenginez-dashboard" target="_blank">jharriGH/agentenginez-dashboard</a></div>
+  <div class='sub'>📅 2026-06-11 (12d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/agentenginez-site/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">agentenginez-site</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/agentenginez-site" target="_blank">jharriGH/agentenginez-site</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/daycaremarketerz/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">DayCareMarketerz</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/daycaremarketerz" target="_blank">jharriGH/daycaremarketerz</a></div>
+  <div class='sub'>📅 2026-06-11 (12d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/daycaremarketerz-8aee94db/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">daycaremarketerz-8aee94db</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/daycaremarketerz-8aee94db" target="_blank">jharriGH/daycaremarketerz-8aee94db</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/demo-booster-suite/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">demo-booster-suite</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/demo-booster-suite" target="_blank">jharriGH/demo-booster-suite</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/demo-spark-engine/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">demo-spark-engine</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/demo-spark-engine" target="_blank">jharriGH/demo-spark-engine</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/demoboosterz-screenshot-server/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">demoboosterz-screenshot-server</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/demoboosterz-screenshot-server" target="_blank">jharriGH/demoboosterz-screenshot-server</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/demoenginez-screenshot-server/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">demoenginez-screenshot-server</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/demoenginez-screenshot-server" target="_blank">jharriGH/demoenginez-screenshot-server</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/empire-dashboard/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">empire-dashboard</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/empire-dashboard" target="_blank">jharriGH/empire-dashboard</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjle-sender/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">EmpireSenderz</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjle-sender" target="_blank">jharriGH/kjle-sender</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/financeiq-kje/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">financeiq-kje</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/financeiq-kje" target="_blank">jharriGH/financeiq-kje</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/iasy-backend/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">iasy-backend</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/iasy-backend" target="_blank">jharriGH/iasy-backend</a></div>
+  <div class='sub'>📅 2026-06-17 (6d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/iasy-frontend/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">iasy-frontend</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/iasy-frontend" target="_blank">jharriGH/iasy-frontend</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/jim-brain/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">jim-brain</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/jim-brain" target="_blank">jharriGH/jim-brain</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/king-james-empire/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">king-james-empire</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/king-james-empire" target="_blank">jharriGH/king-james-empire</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kinggpt-starter/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kinggpt-starter</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kinggpt-starter" target="_blank">jharriGH/kinggpt-starter</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kje-mcp/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">KJ Brain</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kje-mcp" target="_blank">jharriGH/kje-mcp</a></div>
+  <div class='sub'>📅 2026-06-11 (12d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kj-bridgedeck/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">KJ BridgeDeck</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kj-bridgedeck" target="_blank">jharriGH/kj-bridgedeck</a></div>
+  <div class='sub'>📅 2026-06-10 (13d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kj-autonomous/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kj-autonomous</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kj-autonomous" target="_blank">jharriGH/kj-autonomous</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kj-data-empire-suite/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kj-data-empire-suite</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kj-data-empire-suite" target="_blank">jharriGH/kj-data-empire-suite</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kj-data-empire-suite-6e47d94b/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kj-data-empire-suite-6e47d94b</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kj-data-empire-suite-6e47d94b" target="_blank">jharriGH/kj-data-empire-suite-6e47d94b</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kj-testenginez-api/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kj-testenginez-api</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kj-testenginez-api" target="_blank">jharriGH/kj-testenginez-api</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kje-cc-status/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kje-cc-status</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kje-cc-status" target="_blank">jharriGH/kje-cc-status</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kje-orchestrator/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kje-orchestrator</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kje-orchestrator" target="_blank">jharriGH/kje-orchestrator</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjle/blob/main/KJ_EMPIRE_ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">KJLE</a></div>
+  <div class="desc">Lead engine — scraping, classification, DNC compliance, RI campaign creation. Data hub for the empire.</div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjle" target="_blank">jharriGH/kjle</a></div>
+  <div class='sub'>🚀 Day 3 done — LS pipeline proven; casing patch + DNC swap pending</div><div class='sub'>🎯 target 2026-06-09</div><div class='sub'>💰 spent $10.92 · remaining $4.08</div><div class='sub'>📅 2026-06-14 (9d ago)</div>
+  <div class="chips"><span class="chip">EmpireSenderz</span><span class="chip">TH</span><span class="chip">DemoEnginez</span><span class="chip">DemoBoosterz</span><span class="chip">Local Scraper workers</span></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjle-command-deck/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kjle-command-deck</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjle-command-deck" target="_blank">jharriGH/kjle-command-deck</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjle-empire-hub/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kjle-empire-hub</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjle-empire-hub" target="_blank">jharriGH/kjle-empire-hub</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjpde-api/blob/master/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kjpde-api</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjpde-api" target="_blank">jharriGH/kjpde-api</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjpde-command-deck/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kjpde-command-deck</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjpde-command-deck" target="_blank">jharriGH/kjpde-command-deck</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjpde-docs/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kjpde-docs</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjpde-docs" target="_blank">jharriGH/kjpde-docs</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjpde-storefront-safety/blob/master/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kjpde-storefront-safety</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjpde-storefront-safety" target="_blank">jharriGH/kjpde-storefront-safety</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjpde-storefront-template/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kjpde-storefront-template</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjpde-storefront-template" target="_blank">jharriGH/kjpde-storefront-template</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjvoicedropz-api/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kjvoicedropz-api</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjvoicedropz-api" target="_blank">jharriGH/kjvoicedropz-api</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjwidgetz/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">kjwidgetz</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjwidgetz" target="_blank">jharriGH/kjwidgetz</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/kjwidgetz-api/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">KJWidgetz</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/kjwidgetz-api" target="_blank">jharriGH/kjwidgetz-api</a></div>
+  <div class='sub'>📅 2026-06-11 (12d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/nfctapcardz/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">nfctapcardz</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/nfctapcardz" target="_blank">jharriGH/nfctapcardz</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/offerenginez-web/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">OfferEnginez</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/offerenginez-web" target="_blank">jharriGH/offerenginez-web</a></div>
+  <div class='sub'>📅 2026-06-10 (13d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/offerenginez-portal/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">offerenginez-portal</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/offerenginez-portal" target="_blank">jharriGH/offerenginez-portal</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/reelestatekit/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">reelestatekit</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/reelestatekit" target="_blank">jharriGH/reelestatekit</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/reputation-risk-score/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">reputation-risk-score</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/reputation-risk-score" target="_blank">jharriGH/reputation-risk-score</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/reputationempirez/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">ReputationEmpirez</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/reputationempirez" target="_blank">jharriGH/reputationempirez</a></div>
+  <div class='sub'>📅 2026-06-11 (12d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/reviewbombz-checkout-test/blob/master/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">reviewbombz-checkout-test</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/reviewbombz-checkout-test" target="_blank">jharriGH/reviewbombz-checkout-test</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/reviewbombz-monitor/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">reviewbombz-monitor</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/reviewbombz-monitor" target="_blank">jharriGH/reviewbombz-monitor</a></div>
+  <div class='sub'>📅 2026-06-14 (9d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/reviewpopz/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">reviewpopz</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/reviewpopz" target="_blank">jharriGH/reviewpopz</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/royal-brain/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">royal-brain</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/royal-brain" target="_blank">jharriGH/royal-brain</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/salonmarketerz/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">salonmarketerz</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/salonmarketerz" target="_blank">jharriGH/salonmarketerz</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/telehealth-hub/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">telehealth-hub</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/telehealth-hub" target="_blank">jharriGH/telehealth-hub</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/telehealth-hub-e36c12f3/blob/main/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">telehealth-hub-e36c12f3</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/telehealth-hub-e36c12f3" target="_blank">jharriGH/telehealth-hub-e36c12f3</a></div>
+  <div class='sub'>📅 2026-06-13 (10d ago)</div>
+  <div class="chips"></div>
+</div><div class="card fresh">
+  <div class="head"><span class="dot">🟢</span><a class="name" href="https://github.com/jharriGH/telehealth-command-center/blob/master/ROADMAP.md" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">TH</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/telehealth-command-center" target="_blank">jharriGH/telehealth-command-center</a></div>
+  <div class='sub'>📅 2026-06-10 (13d ago)</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><a class="name" href="https://github.com/jharriGH/acquisition-engine" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">acquisition-engine</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/acquisition-engine" target="_blank">jharriGH/acquisition-engine</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div><div class="card stale">
+  <div class="head"><span class="dot">🔴</span><a class="name" href="https://github.com/jharriGH/arsenal" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none">arsenal</a></div>
+  <div class="desc"><em>no description</em></div>
+  <div class="repo"><a href="https://github.com/jharriGH/arsenal" target="_blank">jharriGH/arsenal</a></div>
+  <div class='note'>⚠ SC hasn&#x27;t added ROADMAP.md with YAML front-matter yet</div>
+  <div class="chips"></div>
+</div>
+</div>
+<section>
+<h2>🔗 Integration graph</h2>
+<ul><li><b>KJLE</b> → EmpireSenderz, TH, DemoEnginez, DemoBoosterz, Local Scraper workers</li></ul>
+</section>
+<section>
+<h2>☂️ Umbrella members (ReputationEmpirez)</h2>
+<ul><li><b>ReviewPopz</b> — ReputationEmpirez umbrella member</li><li><b>NFCTapCardz</b> — ReputationEmpirez umbrella member</li><li><b>Reputation Risk Score</b> — ReputationEmpirez umbrella member</li></ul>
+</section>
+<footer>
+Generated by <code>build.py</code> on racknerd-7011b3a · empire-dashboard v1 ·
+projects auto-discovered via GitHub API; push a webhook to trigger immediate rebuild.
+</footer>
+</body>
+</html>

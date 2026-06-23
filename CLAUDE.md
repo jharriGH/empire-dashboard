@@ -1,312 +1,184 @@
-# ⚡ EMPIRE_DASHBOARD — CLAUDE.md
-# Managed by brain_sync.py (Brain sections)
-# + Manual additions (never auto-updated)
-# Last synced: June 22, 2026 07:36 PM PST
+# 🧠 KJE Empire — CLAUDE.md
+# Auto-healed by claude_md_healer.py from Jim Brain state
+# Last healed: 2026-05-12 00:00:09 UTC
+# Repo: /opt/empire_dashboard
 
 ---
 
-# ═══════════════════════════════════════════════════════════
-#  KING JAMES EMPIRE — SC / CC OPERATING INSTRUCTIONS
-#  Read first, every session. This is the single source of truth.
-# ═══════════════════════════════════════════════════════════
+## WHO YOU WORK FOR
 
-## IDENTITY
-I am Jim Harris, King James Empire, Long Beach CA. DevelopingRiches Inc (C-Corp). Solo founder.
-Standard: GOAT — production-ready, no half-measures.
-Doctrine: decide-and-proceed, but VERIFY LIVE — never trust a self-report.
+You are working for Jim Harris — King James Empire (KJE).
+Empire-wide rules in `/opt/jim-brain/CLAUDE.md` (KJ_RULEZ) apply unless this
+file explicitly supersedes them.
 
-# ───────────────────────────────────────────────────────────
-# 0. EXECUTION & COST — HIGHEST AUTHORITY (overrides everything below)
-# ───────────────────────────────────────────────────────────
-Before ANY build task, STATE these three, then STOP for Jim's explicit "go":
-1. Cheapest path. DEFAULT = a terminal-ready prompt Jim runs on his Max plan (~$0 marginal).
-   Only name run_build_task if a local terminal genuinely can't do it (must run
-   unattended/overnight, or on the VPS) — and say WHY.
-2. Model + one-line reason. Default Sonnet; Opus only if earned.
-3. Rough cost: ~$0 (Jim's terminal) vs ~$2-3 (metered dispatch).
-NEVER fire run_build_task without Jim's explicit "go."
-
-COST REALITY:
-- run_build_task / kje-cc-dispatch = METERED API key (~$2-3 each, hourly invoices).
-- Jim's local terminals = Max subscription, flat fee = the cheap path. Default to it.
-- FREE tools (use automatically, no permission needed): brain_status, brain_search,
-  brain_get_project, brain_vault_search, brain_log, brain_memory, vps_exec, curl, /logs.
-- ONLY run_build_task costs money and needs Jim's go. Diagnostics are free — use freely.
-
-# ───────────────────────────────────────────────────────────
-# 1. MODEL TIERING
-# ───────────────────────────────────────────────────────────
-- Haiku 4.5  — trivial/mechanical (lookups, simple edits)
-- Sonnet 4.6 — DEFAULT for real build work
-- Opus 4.8   — only when the task earns it (hard reasoning/architecture). Sparingly.
-- Dispatcher default model = claude-sonnet-4-6. NEVER spawn `claude -p` without an explicit
-  --model AND --max-turns (an env-var default alone is not enough — pin it in the command).
-- Prompt caching is automatic in Claude Code — keep context stable to maximize it.
-
-# ───────────────────────────────────────────────────────────
-# 2. GIT SAFETY
-# ───────────────────────────────────────────────────────────
-- Normal push only: `git push origin main`. `git push --force` is BANNED empire-wide.
-  A push-rejected error is the safety net — never override it.
-- Resolve conflicts by KEEPING BOTH SIDES (never --ours, which drops other SCs' work).
-  CLAUDE.md is brain_sync-auto-generated, so --theirs is safe for THAT file only.
-- Jim sees the exact unified diff before any file change is approved.
-
-# ───────────────────────────────────────────────────────────
-# 3. CREDENTIALS
-# ───────────────────────────────────────────────────────────
-- The vault holds most keys: brain_vault_search or GET /vault/{project}. Use them first.
-- If a key is genuinely missing, or a NEW secret must be created (e.g. issuing a fresh API
-  key), ASK JIM. Never guess, never fabricate, never paste a placeholder.
-
-# ───────────────────────────────────────────────────────────
-# 4. TERMINAL PROMPT SKELETON (what to hand Jim)
-# ───────────────────────────────────────────────────────────
-Fill this in and hand Jim the COMPLETED version — never leave <...> placeholders in a
-prompt a CC actually receives:
-
-Model: Sonnet (Haiku if trivial / Opus if flagged)
-Repo + exact files: <repo + specific file paths>
-Task: <one specific, bounded task>
-Rules: minimal diff · don't explore beyond the named files · stop when done
-Report: unified diff + one-line summary
-
-# ───────────────────────────────────────────────────────────
-# 5. BRAIN TOOLS — which when (+ gotchas)
-# ───────────────────────────────────────────────────────────
-- brain_memory → SEARCHABLE (mem0/Qdrant). Decisions, state, milestones, gotchas.
-  Retry on 500; do NOT fall back to /log.
-- brain_log → AUDIT ONLY (Supabase empire_logs), not searchable. Read via /logs?limit=N.
-- brain_search → RECENCY-BLIND (ranks relevance, not freshness). Check created_at/age_days.
-  <0.45 = noise; 0.65+ = real. ~30-min embedding lag — not for confirming recent work.
-- Real-time "what just happened" → GET /logs?limit=N, never brain_search.
-- Vault existence checks → GET /vault/{project}; brain_vault_search is loose-ranked.
-- mem0 dedup can NOOP silently (success:true but nothing embedded) — for critical state,
-  also write a deterministic record (build card / next_action), don't rely on search alone.
-- "Tool not found" on a brain_* tool = stale MCP session after a kje-mcp (Render) restart →
-  reconnect / fresh session, then retry.
-
-# ───────────────────────────────────────────────────────────
-# 6. DEPLOY-AND-VERIFY
-# ───────────────────────────────────────────────────────────
-- Detect a live deploy by polling a NEWLY-ADDED endpoint (200 = new code, 404 = old) —
-  NOT /health 200 (it serves the old container during a 7-15 min build).
-- Never combine push + verify in one dispatch. Never add auto-rollback timers.
-
-# ───────────────────────────────────────────────────────────
-# 7. SPEED & PARALLELISM (Jim's default preference)
-# ───────────────────────────────────────────────────────────
-- Move as FAST as safely possible — bias toward shipping. PROACTIVELY offer to split
-  independent work into separate prompts Jim runs in parallel local terminals (Max plan =
-  flat fee, so parallel = faster at ~$0 extra). Offer the parallel breakdown by default.
-- Parallelize across DIFFERENT repos/files only — never parallel sessions on the same files
-  (merge conflicts). If work is genuinely sequential, say so.
-- "When safe" is the gate: speed never skips verify-live, diff review, git safety, or the
-  cost recommendation. Fast AND safe — not fast INSTEAD of safe.
-
-# ───────────────────────────────────────────────────────────
-# SESSION START — load context automatically (free, read-only)
-# ───────────────────────────────────────────────────────────
-On every new chat, load empire context (no permission needed — these are free reads):
-1. brain_status  (cheap pulse)
-2. GET /context
-3. GET /projects
-4. GET /cards
-5. GET /logs?limit=10
-Header for all REST calls: x-brain-key: jim-brain-kje-2026-kingjames
-Then confirm: "Jim Brain loaded. I can see [X] projects, [X] cards, and [X] memories.
-Ready to build. What are we working on?"
-
-# ───────────────────────────────────────────────────────────
-# BRAIN — connection reference
-# ───────────────────────────────────────────────────────────
-Brain URL: https://jim-brain-production.up.railway.app   (current version: v1.9.0)
-Key:       jim-brain-kje-2026-kingjames
-MCP:       https://kje-mcp.onrender.com/mcp/T24NM1Sxbh7txJs-unNIjblaXMqA1OZW6gNU-Ud5Yjk/
-VPS:       192.161.173.97 (Ubuntu 24.04)   |   Notify: POST /notify (channel: sms|email|both)
-GitHub:    jharriGH   |   Local repos: C:\Users\Jim\Documents\GitHub\
-
-Tools available: brain_status, brain_search, brain_get_project, brain_vault_search,
-brain_log, brain_memory, run_build_task (METERED — Jim's go required).
-
-Two logging endpoints:
-- POST /log    → instant (<1s), audit only, NOT searchable. Automated/frequent events.
-- POST /memory → semantic (60-90s), searchable. Decisions, milestones, lessons.
-
-# ───────────────────────────────────────────────────────────
-# TECH STACK (never suggest third-party alternatives like GHL/Zapier)
-# ───────────────────────────────────────────────────────────
-Frontend: Lovable | Backend: Python/FastAPI | DB: Supabase (PostgreSQL)
-API hosting: Render | Workers/crons: Railway | Storage: Cloudflare R2 | CDN: Cloudflare Pages
-AI: Claude API (claude-sonnet-4-6 default) | Memory: Jim Brain (mem0 + Qdrant)
-Orchestration: n8n on Railway | Voice: Vapi.ai + AVA v6.4.0 | RVM: VoiceDropz
-Email: ReachInbox + Instantly | LinkedIn: HeyReach | SMS: Twilio (866-621-7044 A2P)
-Payments: Stripe
-
-EMPIRE PRODUCTS: KJWidgetz | KJLE | Jim Brain | DemoBoosterz | DemoEnginez | VoiceDropz |
-KJ SalesAgentz | UnhideLocal | SiteEnginez | ReviewBombz | KJ Autonomous |
-KJ CodeDeck/BridgeDeck | IAMStillHere | AgentEnginez | TestEnginez | DaycareMarketerz |
-FinanceIQ | IASY
-
-# ───────────────────────────────────────────────────────────
-# CODING RULES — ALWAYS
-# ───────────────────────────────────────────────────────────
-- Complete files only, no snippets or placeholders.
-- Specify exact repo, Supabase project, service on every command.
-- `git push origin main`  (NORMAL push — never --force; see §2).
-- service_role key, never anon key.
-- supabase.schema('name') not constructor chaining.
-- .maybeSingle() not .single().
-- await + try/catch on Supabase queries.
-- Run curl from the RackNerd VPS, not Windows CMD.
-- /log for fast logging; /memory for semantic decisions.
-- PATCH /projects for project updates; PATCH /state for single metric updates.
-
-# NEVER DO:
-- Suggest GHL, Zapier, or stack alternatives.
-- Use placeholders or PASTE_ID_HERE.
-- Produce snippets — always complete files.
-- Modify existing n8n workflows (new workflows only).
-- Single quotes or em dashes in Brain content (use double quotes and hyphens).
-- POST /state to update arrays (use the PATCH endpoints).
-
-# ───────────────────────────────────────────────────────────
-# SESSION END RULE
-# ───────────────────────────────────────────────────────────
-Every session ends with all three:
-1. POST /memory — full session summary (BUILT / DECISIONS / BUGS FIXED / GOTCHAS / NEXT),
-   tags ["[project]", "session_end"].
-2. PATCH /projects — update next_action.
-3. POST /cards — save updated BUILD_STATE card.
-Confirm each succeeded, then give Jim a plain-English summary.
-
-# GOTCHA LOGGING RULE:
-Any bug, workaround, or lesson learned → log immediately via POST /memory (brain_memory),
-tags ["[project]", "gotcha", "lesson"].
-
-# ───────────────────────────────────────────────────────────
-# BRAIN SYNC + ROADMAP (Brain-derived — do NOT hand-edit)
-# ───────────────────────────────────────────────────────────
-brain_sync.py runs daily at 7am, regenerating every repo's CLAUDE.md AND ROADMAP.md from Brain.
-Manual run: python brain_sync.py  (location: C:\Users\Jim\Documents\GitHub\)
-- The operating rules in this document live in the brain_sync CLAUDE.md template — edit them
-  THERE, not per-repo.
-- ROADMAP.md is RENDERED FROM BRAIN (each project's next_action + latest BUILD_STATE card +
-  recent session summaries). Do NOT hand-edit per-repo ROADMAP.md — multiple writers are what
-  caused the CLAUDE.md/ROADMAP.md merge conflicts we already hit. The roadmap updates itself
-  because session-end already writes next_action + card + summary to Brain; brain_sync renders
-  the file. One writer, no conflicts, always current.
-
-# ───────────────────────────────────────────────────────────
-# MANDATORY FOOTER — after every response
-# ───────────────────────────────────────────────────────────
-📊 [PROJECT] — [X]% complete | 📍 [PHASE] — [X]%
-🔄 EMPIRE IN FLIGHT
-| Session | Status | Jim Needed? |
-(populate from brain_search("active session") or known active sessions)
-
-# ───────────────────────────────────────────────────────────
-# TEMPLATE — UNIVERSAL SESSION ENDER (paste to a CC to close out)
-# ───────────────────────────────────────────────────────────
-Session complete. Do all three now and confirm each:
-1. POST /memory — SESSION SUMMARY [project]: BUILT / DECISIONS / BUGS FIXED / GOTCHAS / NEXT
-   tags ["[project]", "session_end"]
-2. PATCH /projects — next_action = [most important next task]  (match_by: id)
-3. POST /cards — title "[PROJECT] BUILD_STATE [date]", project "[project]", content [markdown]
-Then give a plain-English summary of what we accomplished.
+Brain endpoint: `https://jim-brain-production.up.railway.app`
+Brain key: `jim-brain-kje-2026-kingjames` (header: `x-brain-key`, lowercase)
 
 ---
 
-## CURRENT STATUS
-<!-- BRAIN-SYNC:START:STATUS -->
-*Brain sync: June 22, 2026 07:36 PM PST*
+## PROJECT STATUS
 
-<!-- BRAIN-SYNC:END:STATUS -->
+- **Project:** KJE Empire 💰
+- **ID:** `kje_empire_1775521531140`
+- **Group:** Infrastructure
+- **Status:** `live`
+- **Description:** This is the foundation of KJE
 
----
-
-## EMPIRE STATE & COSTS
-<!-- BRAIN-SYNC:START:EMPIRE_STATE -->
-- Clients: 0
-- MRR: $0.00
-- HOT leads: 0
-- Last decision: None
-<!-- BRAIN-SYNC:END:EMPIRE_STATE -->
+### Next Action
+Set up empire-dashboard GitHub repo and enable Pages. Then: launch DemoBoosterz outreach campaign (product is ready). Then: KJWidgetz Stripe live key swap.
 
 ---
 
-## RECENT EMPIRE_DASHBOARD MEMORIES
-<!-- BRAIN-SYNC:START:MEMORIES -->
-1. Dashboard live at jharriGH.github.io/empire-dashboard/empire-command-center.html
-2. Empire dashboard workflow established
-3. Next action is to set up the empire-dashboard GitHub repo and enable Pages
-4. Includes Empire Launcher
-5. Tags: empire_dashboard, project_registry, registry_reconciliation, gh_repo_list, next_chat
-6. Empire OS is DONE
-7. Next: curated PROJECT_REGISTRY audit needs Jim's judgment, then patch /opt/kje-mcp/empire-dashboard/build.py
-8. Full empire OS live
-<!-- BRAIN-SYNC:END:MEMORIES -->
+## RECENT MEMORIES (top 10)
 
----
-
-## BUILD STATE
-<!-- BRAIN-SYNC:START:BUILD_STATE -->
-*No build card in Brain yet.*
-*brain_sync will auto-push BUILD_STATE.md if found in repo.*
-*Or call brain_save_card() at end of next CC session.*
-<!-- BRAIN-SYNC:END:BUILD_STATE -->
-
----
-
-## MANUAL ADDITIONS
-<!-- brain_sync.py never modifies below this line -->
-
----
-
-## EMPIRE STATE & COSTS
-
----
-
-## RECENT EMPIRE_DASHBOARD MEMORIES
+1. Deploy: github.com/jharriGH/kje-orchestrator → Render service srv-d813bjvavr4c73b223b0 → https://kje-orchestrator.onrender.com
+2. Wave 3 fan-out was completed by prior coordinator on 2026-05-11 at 19:51:33Z
+3. Emails client via lib/email noreply@kjwidgetz.com
+4. Tags: vps, bootstrap, milestone, blocker
+5. Alerts: 0
+6. Commits: b8b877d, be3c39b, 0076569
+7. KJLE Session 2B shipped on 2026-05-10
+8. Rebuild target is westcoaststylez.com (currently empty, post-hack-recovery)
+9. Two bugs found: parser checks state==bad but API returns invalid so 0 invalids in 87701 cleaned; verify_inline naming inconsistent across emails
+10. Just blocked on schema creation
 
 ---
 
 ## BUILD STATE
 
+**Card:** KJE Orchestrator BUILD_STATE 2026-05-11
+**Saved:** 2026-05-11T20:14:22.905640
+
+# KJE Orchestrator — BUILD_STATE 2026-05-11
+
+**Status:** LIVE
+**URL:** https://kje-orchestrator.onrender.com
+**Render Service:** srv-d813bjvavr4c73b223b0
+**Repo:** https://github.com/jharriGH/kje-orchestrator
+**Build SHA:** cee25b8799de (P3 v1.0.0)
+**Plan:** starter ($7/mo)
+**Region:** oregon
+
+## Verified endpoints
+| Endpoint | Result |
+|----------|--------|
+| `GET /health` | HTTP 200 `{"status":"ok","version":"1.0.0"}` |
+| `GET /version` | HTTP 200 (build, poll_interval, stall_timeout) |
+| `GET /status` | HTTP 500 — pending `kjcodedeck.wave_manifest` table creation |
+| `POST /trigger-poll` | guarded by `x-trigger-key` header |
+
+## Files shipped (11)
+1. `main.py` — FastAPI app, lifespan boots BrainClient + WaveEngine + Poller
+2. `poller.py` — APScheduler 60s tick, calls `wave.process_logs(logs)`
+3. `wave_engine.py` — wave_manifest reader, complete/blocked/stalled detection, VPS dispatch
+4. `notify.py` — retry+backoff wrappers around `/notify`, `/memory`, `/log`
+5. `brain_client.py` — httpx async client with lowercase `x-brain-key`
+6. `requirements.txt` — fastapi 0.115.5, supabase 2.9.1, apscheduler 3.10.4, etc.
+7. `Procfile` — `web: uvicorn main:app --host 0.0.0.0 --port $PORT`
+8. `render.yaml` — service blueprint w/ `sync: false` secrets
+9. `Dockerfile` — python:3.11-slim, non-root user, healthcheck
+10. `.env.example` — every env var documented
+11. `README.md` — full runbook + schema + ops guide
+   (+ `.python-version` and `runtime.txt` pinning 3.11.10 after Render's default of 3.14 broke first deploy)
+
+## Wave-chaining logic
+- Poll Brain `/logs?limit=50` every 60s (configurable).
+- Group entries by `tags + job_id`. Match against active wave's `jobs[]`.
+- **Complete:** every job logged `task_complete` → mark wave `done`, chain next queued.
+- **Blocked:** any job tagged `blocker`/`fatal`/`halt` → mark wave `blocked`, SMS + memory.
+- **Stalled:** >30 min without job-tagged log entries → mark `stalled`, SMS.
+- **Chain:** lowest-priority queued wave promoted to `active`, each job POSTed to VPS_DISPATCH_URL with X-Dispatch-Key.
+
+## Env vars on Render (14)
+PYTHON_VERSION=3.11.10, BRAIN_URL, BRAIN_KEY, SUPABASE_URL, SUPABASE_SERVICE_KEY,
+VPS_DISPATCH_URL=http://192.161.173.97:8091/dispatch, VPS_DISPATCH_KEY (64-char),
+TRIGGER_KEY (auto-generated, stored on VPS at /tmp/p3_orch_trigger.env),
+POLL_INTERVAL=60, POLL_LOG_LIMIT=50, STALL_TIMEOUT=1800, DISPATCH_TIMEOUT=20,
+PROJECT_SLUG=kje_orchestrator, LOG_LEVEL=INFO.
+
+## Gotchas captured
+- **Render Python default:** first deploy used Python 3.14.3 (latest) and crashed — must pin via `.python-version` + `PYTHON_VERSION` env var + `runtime.txt`.
+- **Render envVars via POST /v1/services:** the envVars array inside serviceDetails was silently dropped on create. Fix: `PUT /v1/services/{id}/env-vars` separately, then trigger redeploy.
+- **Brain has no POST /projects:** new projects must be registered through the Brain UI; API exposes only GET/PATCH. `PATCH /projects` for kje_orchestrator currently 404s until Jim adds it.
+- **/status 500:** `kjcodedeck.wave_manifest` table does not yet exist in Supabase. Create it before promoting orchestrator to active duty (DDL in README.md).
+
+## Decisions
+- Starter plan, oregon, autoDeploy=yes — same shape as kjle/jim-brain.
+- 30-min stall timeout (configurable via env).
+- Trigger key generated via `secrets.token_urlsafe(40)`, not stored in repo.
+- Force-push to main per spec; competing P3v3 build script also pushed (commit 71aff4b7) — currently running container is still `cee25b87` build until a later redeploy promotes the newer commit.
+
+## Next actions
+1. Register `kje_orchestrator` project in Brain UI so PATCH /projects works.
+2. Run DDL to create `kjcodedeck.wave_manifest` table.
+3. Insert first test wave (one harmless job) and watch `/status` cycle through queued → active → done.
+4. Tune `STALL_TIMEOUT` after observing first 24h of throughput.
 
 ---
 
-## FIRST THING — DO THIS AUTOMATICALLY
+## EMPIRE-WIDE RULES (excerpt)
 
-```
-brain_session_start(focus="[today's task]", product="empire_dashboard")
-brain_search(query='empire_dashboard')
-brain_list_cards()   # find build card
-brain_get_card(id)   # load full spec
-# THEN ask Jim what to tackle
-```
+1. **Brain Endpoint Verification** — always hit `/health` then the real
+   endpoint with `x-brain-key` header BEFORE coding against it. Document
+   actual response shape. No assumptions from convention.
 
-**Do not wait to be asked. Always do this first.**
+2. **Empire Cost Logging** — any LLM call must be instrumented via
+   `kje-cost-logger` per `docs/EMPIRE_COST_LOGGING_BUILD_CARD.md`.
 
----
+3. **Env Var Automation** — CC never asks Jim to manually click env vars
+   into a dashboard. Use Render / Railway / Cloudflare APIs. Tokens live
+   in CC env (`RENDER_API_KEY`, `RAILWAY_TOKEN`, `CF_API_TOKEN`).
 
-## SESSION END — DO THIS AUTOMATICALLY
+4. **Gotcha Logging** — log any bug / workaround to Brain via
+   `POST /memory` with tags `["kje_empire_1775521531140", "gotcha", "lesson"]` the
+   moment context is fresh.
 
-```
-brain_session_end(
-  product="empire_dashboard",
-  what_shipped="[what was built]",
-  decisions="[key decisions]",
-  next_action="[most important next task]"
-)
-brain_save_card(
-  title="EMPIRE_DASHBOARD BUILD_STATE [date]",
-  project="empire_dashboard",
-  content="[full build state md]"
-)
-```
+5. **Session Start / End** — every CC session begins with
+   `brain_session_start(focus="...", product="kje_empire_1775521531140")` and ends
+   with `brain_session_end(...)` + `brain_save_card(...)`.
 
 ---
 
-*Synced: June 22, 2026 07:36 PM PST*
-*Refresh: `python brain_sync.py empire_dashboard`*
+## VAULT KEYS AVAILABLE FOR THIS PROJECT
+
+*No vault keys registered under project `kje_empire_1775521531140`. Empire-wide secrets live in `/vault/shared/*`.*
+
+Empire-wide shared keys (always available):
+
+- `GITHUB_PAT_VPS` — VPS automation PAT (contents:write)
+- `SUPABASE-PAT-SHARED` — Supabase DDL automation token
+- `SUPABASE_PERSONAL_ACCESS_TOKEN` — Supabase PAT (44+ chars)
+
+---
+
+## SESSION END PROTOCOL
+
+Before closing the chat, run:
+
+```
+POST /memory   tags=["kje_empire_1775521531140", "session_end"]
+               content="<what shipped, what's next>"
+POST /log      tags=["kje_empire_1775521531140", "session_complete"]
+               content="<one-liner>"
+POST /cards    title="<Project> BUILD_STATE <date>"
+               project="kje_empire_1775521531140"
+               content="<full markdown spec>"
+```
+
+If anything broke, log a gotcha memory FIRST so the next session inherits
+the lesson.
+
+---
+
+*Synced from Brain state at 2026-05-12 00:00:09 UTC.*
+*This file is auto-regenerated every 4h. Manual edits will be overwritten
+on the next heal if the rebuilt content differs by >20% of lines.*
+
+<!-- KJE-ONBOARD-V1 -->
+## KJ Empire — SC Onboarding
+This repo belongs to the KJ Empire (DevelopingRiches Inc, owner Jim Harris / jharriGH).
+- Central repo: jharriGH/kjle. Brain: https://jim-brain-production.up.railway.app
+- New SC seats: run brain_status, brain_search this repo's slug, and verify live state before declaring anything done.
+- Decide-and-proceed. Cost-gate chargeable dispatches. Never echo secrets — pull keys from the Brain vault.
+- See ROADMAP.md for status.
+<!-- /KJE-ONBOARD-V1 -->
